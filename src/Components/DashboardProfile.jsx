@@ -23,6 +23,7 @@ import {
   updateSuccess,
 } from "../Redux/Slice/UserSlice";
 import { object } from "yup";
+import { Link } from "react-router-dom";
 
 const DashboardProfile = () => {
   const dispatch = useDispatch();
@@ -234,6 +235,18 @@ const DashboardProfile = () => {
         >
           {loading ? "loading..." : "Update"}
         </Button>
+        {currentuser.rest.isAdmin && (
+          <Link to={"/create-post"}>
+            {" "}
+            <Button
+              type="submit"
+              gradientDuoTone="purpleToBlue"
+              className="w-full"
+            >
+              Create Post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-600 flex justify-between mt-5">
         <span className="cursor-pointer" onClick={() => setShowModel(true)}>
