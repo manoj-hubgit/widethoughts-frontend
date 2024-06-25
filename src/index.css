@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap');
+
+
+.pageName{
+    font-family: "Arvo", serif;
+    font-weight: 800;
+}
+.caps{
+    font-family: "Pacifico", cursive;
+}
+
+
+.pageNameColor{
+    background: linear-gradient(to left, rgb(92, 93, 234), rgb(38, 148, 220)); /* Purple to Blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    
+}

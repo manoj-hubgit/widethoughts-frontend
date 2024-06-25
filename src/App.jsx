@@ -13,6 +13,7 @@ import EditPostPrivateRoute from './Components/EditPostPrivateRoute';
 import EditPost from './Pages/EditPost';
 import Post from './Pages/Post';
 import BlogPrivateRoute from './Components/BlogsPrivateRoute';
+import Home from './Pages/Home';
 
 
 const App = () => {
@@ -21,8 +22,8 @@ const App = () => {
     <BrowserRouter>
     <Header/>
     <Routes>
+    <Route path='/' element={<Home/>} />
       <Route path='/about' element={<About/>}/>
-      
       <Route element={<PrivateRoute/>}>
       <Route path='/dashboard' element={<Dashboard/>} />
       </Route>

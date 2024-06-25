@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { HiInformationCircle } from "react-icons/hi";
 import OAuth from "../Components/OAuth";
-
+import "../index.css"
 const Signup = () => {
    const [loading,setLoading]=useState(false)
    const [errorMessage,setErrorMessage]=useState(null)
@@ -65,8 +65,11 @@ const handleSubmit=async (values)=>{
     <div className="min-h-screen mt-20">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         <div className="flex-1">
-          <div className="font-bold dark:text-white text-4xl">
-            WIDE THOUGHTS
+        <div className="pageNameColor font-bold dark:text-white text-4xl">
+            <span className="caps">W</span>
+            <span className="pageName">ide</span>
+            <span className="caps">T</span>
+            <span className="pageName">houghts</span>
           </div>
           <p className="text-sm mt-6">
             You can signup using email and password or signin with google

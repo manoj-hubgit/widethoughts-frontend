@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
                 labelColor="dark"
                 as="div"
               >
-                Posts
+                Post or Edit
               </Sidebar.Item>
             </Link>
           )}

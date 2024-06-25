@@ -38,7 +38,7 @@ const EditPost = () => {
   const fetchPost = async () => {
     try {
       const response = await fetch(
-        `https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`,
+        `http://localhost:5000/api/post/getpost/${postId}`,
         {
           headers: {
             Authorization: localStorage.getItem("Token"),
@@ -62,7 +62,7 @@ const EditPost = () => {
   };
 
   const handleUploadImage = async () => {
-    if (!file) return; // Return if no file is selected
+    if (!file) return; 
 
     try {
       setImageFileUploadError(null);
@@ -100,7 +100,7 @@ const EditPost = () => {
     if (file) {
       await handleUploadImage(); // Upload the image first if there is a new file
     }
-
+    const strippedContent = formData.content.replace(/<[^>]+>/g, "");
     try {
       const response = await fetch(`http://localhost:5000/api/post/updatepost/${postId}`, {
         method: "PUT",
@@ -108,7 +108,7 @@ const EditPost = () => {
           "Content-Type": "application/json",
           Authorization: localStorage.getItem("Token"),
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, content: strippedContent }),
       });
       const data = await response.json();
       if (!response.ok) {

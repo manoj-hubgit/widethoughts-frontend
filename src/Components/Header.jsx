@@ -13,35 +13,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toggleTheme } from "../Redux/Slice/ThemeSlice";
 import { signOutSuccess } from "../Redux/Slice/UserSlice";
+import "../index.css";
 
 const Header = () => {
   const path = useLocation().pathname;
-  const navigate = useNavigate()
-  const dispatch=useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { currentuser } = useSelector((state) => state.user); //the user will be in current user
-  const {theme}=useSelector((state)=>state.theme)
+  const { theme } = useSelector((state) => state.theme);
 
-  const handleSignout=()=>{
-    dispatch(signOutSuccess())
-    localStorage.removeItem("Token")
-     navigate("/signin")
-  }
+  const handleSignout = () => {
+    dispatch(signOutSuccess());
+    localStorage.removeItem("Token");
+    navigate("/signin");
+  };
   return (
     <Navbar className="border-b-2 dark:bg-black">
       <Link
-        to="/blogs"
-        className="self-center bg-gradient-to-r  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
+        to="/"
+        className="pageNameColor self-center bg-gradient-to-r whitespace-nowrap text-lg sm:text-2xl md:text-3xl font-bold dark:text-white"
       >
-        WideThoughts {/* Application Name */}
+        <span className="caps">W</span>
+        <span className="pageName">ide</span>
+        <span className="caps">T</span>
+        <span className="pageName">houghts</span> {/* Application Name */}
       </Link>
-      <form action="">
+      {/* <form action="">
         <TextInput
           type="text"
           placeholder="Search Blogs..." // This is a search box
           rightIcon={AiOutlineSearch} //used react icons for icon
           className="hidden lg:inline"
         />
-      </form>
+      </form> */}
       <Button
         className="w-13 h-9 lg:hidden"
         gradientDuoTone="purpleToBlue"
@@ -55,10 +59,9 @@ const Header = () => {
           className="hidden sm:inline"
           gradientDuoTone="purpleToBlue"
           outline
-          onClick={()=>dispatch(toggleTheme())}
+          onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "light" ? (<FaMoon/>) : (<FaSun/>) }
-          
+          {theme === "light" ? <FaMoon /> : <FaSun />}
         </Button>
         {/* navigation buttons */}
         {currentuser ? (
@@ -93,7 +96,6 @@ const Header = () => {
         <Navbar.Link active={path === "/about"} as={"div"}>
           <Link to="/about">About</Link>
         </Navbar.Link>
-        
       </Navbar.Collapse>
     </Navbar>
   );

@@ -114,11 +114,11 @@ const CreatePost = () => {
       const strippedContent = formData.content.replace(/<[^>]+>/g, "");
       let response;
       if (isEditing) {
-        
+        // If editing, update the post
         response = await fetch(
-          `https://widethoughts-backend.onrender.com/api/post/create-post`,
+          `https://widethoughts-backend.onrender.com/api/post/updatepost/${postId}`,
           {
-            method: "POST",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: localStorage.getItem("Token"),
@@ -129,7 +129,7 @@ const CreatePost = () => {
       } else {
         // If creating a new post
         response = await fetch(
-          "https://widethoughts-backend.onrender.com/api/post/createpost",
+          "http://localhost:5000/api/post/createpost",
           {
             method: "POST",
             headers: {

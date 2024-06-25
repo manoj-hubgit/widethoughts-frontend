@@ -1,7 +1,7 @@
 import { Footer } from 'flowbite-react';
 import React from 'react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
-
+import "../index.css";
 const FooterComp = () => {
     return (
         <Footer container className='border border-t-4 border-blue-400 dark:bg-black' >
@@ -12,7 +12,10 @@ const FooterComp = () => {
                             href="https://flowbite.com"
                             src="https://flowbite.com/docs/images/logo.svg"
                             alt="Flowbite Logo"
-                            name="WideThoughts"
+                            name={<div className='pageNameColor'><span className="caps">W</span>
+                            <span className="pageName">ide</span>
+                            <span className="caps">T</span>
+                            <span className="pageName">houghts</span></div>}
                         />
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
