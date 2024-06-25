@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
 import About from './Pages/About';
 import Blogs from './Pages/Blogs';
 import Dashboard from './Pages/Dashboard';
@@ -11,6 +10,9 @@ import FooterComp from './Components/Footer';
 import PrivateRoute from './Components/PrivateRoute';
 import OnlyAdminPrivateRoute from './Components/OnlyAdminPrivateRoute';
 import CreatePost from './Pages/CreatePost';
+import EditPostPrivateRoute from './Components/EditPostPrivateRoute';
+import EditPost from './Pages/EditPost';
+import Post from './Pages/Post';
 
 
 const App = () => {
@@ -19,7 +21,6 @@ const App = () => {
     <BrowserRouter>
     <Header/>
     <Routes>
-      <Route path='/' element={<Home/>} />
       <Route path='/about' element={<About/>}/>
       <Route path='/blogs' element={<Blogs/>} />
       <Route element={<PrivateRoute/>}>
@@ -28,8 +29,12 @@ const App = () => {
       <Route element={<OnlyAdminPrivateRoute/>}>
       <Route path='/create-post' element={<CreatePost/>} />
       </Route>
+      <Route element={<EditPostPrivateRoute/>}>
+      <Route path='/edit-post' element={<EditPost/>} />
+      </Route>
       <Route path='/signin' element={<Signin/>} />
       <Route path='/signup' element={<Signup/>} />
+      <Route path='/post/:id' element={<Post />} />
     </Routes>
     <FooterComp />
     </BrowserRouter>

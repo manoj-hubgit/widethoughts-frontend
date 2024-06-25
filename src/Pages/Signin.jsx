@@ -47,7 +47,7 @@ const handleSubmit=async (values)=>{
   if(response.ok){
     localStorage.setItem('Token',data.token)
     dispatch(signInSuccess(data))
-    navigate('/')
+    navigate('/blogs')
   }
   } catch (error) {
     dispatch(signInFailure((error.message)));
@@ -59,7 +59,7 @@ const handleSubmit=async (values)=>{
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         <div className="flex-1">
           <div className="font-bold dark:text-white text-4xl">
-            WIDE THOUGHTS
+            WideThoughts
           </div>
           <p className="text-sm mt-6">
             You can signin using email and password or signin with google

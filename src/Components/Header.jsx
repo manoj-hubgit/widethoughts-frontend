@@ -29,11 +29,10 @@ const Header = () => {
   return (
     <Navbar className="border-b-2 dark:bg-black">
       <Link
-        to="/"
+        to="/blogs"
         className="self-center bg-gradient-to-r  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        {/* rounded-lg from-purple-500 to-blue-600 */}
-        WIDE THOUGHTS {/* Application Name */}
+        WideThoughts {/* Application Name */}
       </Link>
       <form action="">
         <TextInput
@@ -88,15 +87,13 @@ const Header = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/">Home</Link>
+        <Navbar.Link active={path === "/blogs"} as={"div"}>
+          <Link to="/blogs">Blogs</Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
           <Link to="/about">About</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/blogs"} as={"div"}>
-          <Link to="/blogs">Blogs</Link>
-        </Navbar.Link>
+        
       </Navbar.Collapse>
     </Navbar>
   );

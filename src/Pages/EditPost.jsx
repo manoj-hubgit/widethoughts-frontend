@@ -14,70 +14,56 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { HiInformationCircle } from "react-icons/hi";
 
-const CreatePost = () => {
-  const [file, setFile] = useState(null);
-  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
-  const [imageFileUploadError, setImageFileUploadError] = useState(null);
-  const [formData, setFormData] = useState({});
-  const [publishError, setPublishError] = useState(null);
-  const [posts, setPosts] = useState([]);
+const EditPost = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const postId = new URLSearchParams(location.search).get("id");
-  const isEditing = !!postId;
+  const [file, setFile] = useState(null);
+  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
+  const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    content: "",
+    image: "",
+  });
+  const [editError, setEditError] = useState(null);
 
-  // Fetch the specific post to edit if in edit mode
   useEffect(() => {
-    if (isEditing) {
+    if (postId) {
       fetchPost();
     }
-  }, [isEditing]);
+  }, [postId]);
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/getpost/${postId}`, {
-        headers: {
-          Authorization: localStorage.getItem("Token"),
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/post/getpost/${postId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("Token"),
+          },
+        }
+      );
       if (!response.ok) {
-        throw new Error("Failed to fetch post");
+        console.log("Failed to fetch post");
       }
-      const data = await response.json();
-      setFormData(data);
-    } catch (error) {
-      console.error("Error fetching post:", error);
-    }
-  };
-
-  // Fetch all posts
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/post/userposts", {
-        headers: {
-          Authorization: localStorage.getItem("Token"),
-        },
+      const postData = await response.json();
+      setFormData({
+        title: postData.title,
+        category: postData.category,
+        content: postData.content,
+        image: postData.image,
       });
-      if (!response.ok) {
-        throw new Error("Failed to fetch posts");
-      }
-      const data = await response.json();
-      setPosts(data.posts);
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.log(error);
     }
   };
 
   const handleUploadImage = async () => {
+    if (!file) return; // Return if no file is selected
+
     try {
-      if (!file) {
-        setImageFileUploadError("Please select an image");
-        return;
-      }
       setImageFileUploadError(null);
       const storage = getStorage(app);
       const fileName = new Date().getTime() + "-" + file.name;
@@ -110,72 +96,32 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (file) {
+      await handleUploadImage(); // Upload the image first if there is a new file
+    }
     try {
-      const strippedContent = formData.content.replace(/<[^>]+>/g, "");
-      let response;
-      if (isEditing) {
-        // If editing, update the post
-        response = await fetch(
-          `http://localhost:5000/api/post/updatepost/${postId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("Token"),
-            },
-            body: JSON.stringify({ ...formData, content: strippedContent }),
-          }
-        );
-      } else {
-        // If creating a new post
-        response = await fetch(
-          "http://localhost:5000/api/post/createpost",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("Token"),
-            },
-            body: JSON.stringify({ ...formData, content: strippedContent }),
-          }
-        );
-      }
+      const response = await fetch(`http://localhost:5000/api/post/updatepost/${postId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("Token"),
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
       if (!response.ok) {
-        setPublishError(data.message);
+        setEditError(data.message);
         return;
-      } else {
-        setPublishError(null);
-        navigate("/blogs");
       }
+      navigate(`/create-post?id=${postId}`);
     } catch (error) {
-      setPublishError("Something went wrong");
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/post/deletepost/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: localStorage.getItem("Token"),
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to delete post");
-      }
-      fetchPosts();
-    } catch (error) {
-      console.error("Error deleting post:", error);
+      setEditError("Something went wrong");
     }
   };
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">{isEditing ? "Edit Post" : "Create Post"}</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Edit Post</h1>
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -183,15 +129,15 @@ const CreatePost = () => {
             placeholder="Enter the Title"
             required
             id="title"
-            value={formData.title || ""}
             className="flex-1"
+            value={formData.title}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
           />
 
           <Select
-            value={formData.category || ""}
+            value={formData.category}
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -238,7 +184,7 @@ const CreatePost = () => {
             {imageFileUploadError}
           </Alert>
         )}
-        {formData.image && (
+        {formData.image && !file && (
           <img
             src={formData.image}
             alt="upload"
@@ -247,60 +193,27 @@ const CreatePost = () => {
         )}
         <ReactQuill
           theme="snow"
-          value={formData.content || ""}
           placeholder="Write Something"
           required
           className="h-72 mb-12"
+          value={formData.content}
           onChange={(value) => {
             setFormData({ ...formData, content: value });
           }}
         />
         <Button type="submit" gradientDuoTone="purpleToBlue">
-          {isEditing ? "Update" : "Publish"}
+          Update Post
         </Button>
-        {publishError && (
+        {editError && (
           <Alert color="failure" icon={HiInformationCircle} className="mt-5">
             <span className="font-medium me-2">🙇‍♂️ OOPS!</span>
-            {publishError}
+            {editError}
           </Alert>
         )}
       </form>
-
-      {/* This will show the posts of the person */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4">All Posts</h2>
-        {posts.map((post) => (
-          <div key={post._id} className="border p-4 mb-4">
-            <h3 className="text-xl font-medium">{post.title}</h3>
-            <p className="text-gray-600 mb-2">Category: {post.category}</p>
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-48 object-cover mb-2"
-            />
-            <div
-              dangerouslySetInnerHTML={{ __html: post.content }}
-              className="mb-2"
-            />
-            <div className="flex gap-2">
-              <Button
-                onClick={() => navigate(`/edit-post?id=${post._id}`)}
-                gradientDuoTone="greenToBlue"
-              >
-                Edit
-              </Button>
-              <Button
-                onClick={() => handleDelete(post._id)}
-                gradientDuoTone="redToOrange"
-              >
-                Delete
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
 
-export default CreatePost;
+export default EditPost;
+

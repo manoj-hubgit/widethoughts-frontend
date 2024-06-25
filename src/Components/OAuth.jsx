@@ -31,7 +31,7 @@ const handleSubmit= async()=>{
     if(res.ok){
         localStorage.setItem("Token",data.token)
         dispatch(signInSuccess(data))
-        navigate('/')
+        navigate('blogs')
     }
     } catch (error) {
         dispatch(signInFailure(error.message))
