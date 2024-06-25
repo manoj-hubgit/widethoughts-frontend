@@ -12,7 +12,7 @@ const Blogs = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/api/post/getposts");
+    const response = await fetch("https://widethoughts-backend.onrender.com/api/post/getposts");
     const data = await response.json();
     setBlogs(data);
     setLikedPosts(
@@ -25,7 +25,7 @@ const Blogs = () => {
   const handleLike = async (postId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/post/likepost/${postId}`,
+        `https://widethoughts-backend.onrender.com/api/post/likepost/${postId}`,
         {
           method: "POST",
           headers: {
@@ -66,7 +66,7 @@ const Blogs = () => {
   const handleComment = async (postId, comment) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/post/comment/${postId}`,
+        `https://widethoughts-backend.onrender.com/api/post/comment/${postId}`,
         {
           method: "POST",
           headers: {

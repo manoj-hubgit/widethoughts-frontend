@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-const OnlyAdminPrivateRoute = () => {
+
+const BlogPrivateRoute = () => {
     const {currentuser}=useSelector((state)=>state.user);
-    return currentuser && currentuser.rest.isAdmin ? (<Outlet/>) : <Navigate to='/signin'/>
+    return currentuser ? <Outlet/> : <Navigate to='/signin'/>
 };
 
-export default OnlyAdminPrivateRoute;
+export default BlogPrivateRoute;

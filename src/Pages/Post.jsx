@@ -15,7 +15,7 @@ const Post = () => {
 
   const fetchPostById = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/getpost/${id}`, {
+      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/getpost/${id}`, {
         headers: {
           Authorization: localStorage.getItem("Token"),
         },
@@ -29,7 +29,7 @@ const Post = () => {
 
   const handleLike = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/likepost/${id}`, {
+      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/likepost/${id}`, {
         method: "POST",
         headers: {
           Authorization: localStorage.getItem("Token"),
@@ -79,7 +79,7 @@ const Post = () => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/post/comment/${id}`, {
+      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/comment/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

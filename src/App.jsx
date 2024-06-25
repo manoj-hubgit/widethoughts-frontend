@@ -8,11 +8,11 @@ import Signup from './Pages/Signup';
 import Header from './Components/Header';
 import FooterComp from './Components/Footer';
 import PrivateRoute from './Components/PrivateRoute';
-import OnlyAdminPrivateRoute from './Components/OnlyAdminPrivateRoute';
 import CreatePost from './Pages/CreatePost';
 import EditPostPrivateRoute from './Components/EditPostPrivateRoute';
 import EditPost from './Pages/EditPost';
 import Post from './Pages/Post';
+import BlogPrivateRoute from './Components/BlogsPrivateRoute';
 
 
 const App = () => {
@@ -22,19 +22,21 @@ const App = () => {
     <Header/>
     <Routes>
       <Route path='/about' element={<About/>}/>
-      <Route path='/blogs' element={<Blogs/>} />
+      
       <Route element={<PrivateRoute/>}>
       <Route path='/dashboard' element={<Dashboard/>} />
-      </Route>
-      <Route element={<OnlyAdminPrivateRoute/>}>
-      <Route path='/create-post' element={<CreatePost/>} />
       </Route>
       <Route element={<EditPostPrivateRoute/>}>
       <Route path='/edit-post' element={<EditPost/>} />
       </Route>
+      <Route element={<BlogPrivateRoute/>}>
+      <Route path='/blogs' element={<Blogs/>} />
+        <Route path='/post/:id' element={<Post />} />
+      </Route>
       <Route path='/signin' element={<Signin/>} />
-      <Route path='/signup' element={<Signup/>} />
-      <Route path='/post/:id' element={<Post />} />
+      <Route path='/signup' element={<Signup/>} />  
+      <Route path='/create-post' element={<CreatePost/>} />
+    
     </Routes>
     <FooterComp />
     </BrowserRouter>

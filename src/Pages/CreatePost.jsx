@@ -35,7 +35,7 @@ const CreatePost = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/getpost/${postId}`, {
+      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`, {
         headers: {
           Authorization: localStorage.getItem("Token"),
         },
@@ -57,7 +57,7 @@ const CreatePost = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/post/userposts", {
+      const response = await fetch("https://widethoughts-backend.onrender.com/api/post/userposts", {
         headers: {
           Authorization: localStorage.getItem("Token"),
         },
@@ -114,11 +114,11 @@ const CreatePost = () => {
       const strippedContent = formData.content.replace(/<[^>]+>/g, "");
       let response;
       if (isEditing) {
-        // If editing, update the post
+        
         response = await fetch(
-          `http://localhost:5000/api/post/updatepost/${postId}`,
+          `https://widethoughts-backend.onrender.com/api/post/create-post`,
           {
-            method: "PUT",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: localStorage.getItem("Token"),
@@ -129,7 +129,7 @@ const CreatePost = () => {
       } else {
         // If creating a new post
         response = await fetch(
-          "http://localhost:5000/api/post/createpost",
+          "https://widethoughts-backend.onrender.com/api/post/createpost",
           {
             method: "POST",
             headers: {
@@ -156,7 +156,7 @@ const CreatePost = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/post/deletepost/${id}`,
+        `https://widethoughts-backend.onrender.com/api/post/deletepost/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -196,6 +196,7 @@ const CreatePost = () => {
               setFormData({ ...formData, category: e.target.value })
             }
           >
+            <option value="Uncategorized">Uncategorized</option>
             <option value="Technology">Technology</option>
             <option value="Sports">Sports</option>
             <option value="Politics">Politics</option>

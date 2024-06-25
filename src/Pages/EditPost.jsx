@@ -23,7 +23,7 @@ const EditPost = () => {
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
-    category: "",
+    category: "Uncategorized",
     content: "",
     image: "",
   });
@@ -38,7 +38,7 @@ const EditPost = () => {
   const fetchPost = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/post/getpost/${postId}`,
+        `https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`,
         {
           headers: {
             Authorization: localStorage.getItem("Token"),
@@ -47,6 +47,7 @@ const EditPost = () => {
       );
       if (!response.ok) {
         console.log("Failed to fetch post");
+        return;
       }
       const postData = await response.json();
       setFormData({
@@ -99,6 +100,7 @@ const EditPost = () => {
     if (file) {
       await handleUploadImage(); // Upload the image first if there is a new file
     }
+
     try {
       const response = await fetch(`http://localhost:5000/api/post/updatepost/${postId}`, {
         method: "PUT",
@@ -127,7 +129,6 @@ const EditPost = () => {
           <TextInput
             type="text"
             placeholder="Enter the Title"
-            required
             id="title"
             className="flex-1"
             value={formData.title}
@@ -142,6 +143,7 @@ const EditPost = () => {
               setFormData({ ...formData, category: e.target.value })
             }
           >
+            <option value="Uncategorized">Uncategorized</option>
             <option value="Technology">Technology</option>
             <option value="Sports">Sports</option>
             <option value="Politics">Politics</option>
@@ -216,4 +218,3 @@ const EditPost = () => {
 };
 
 export default EditPost;
-
