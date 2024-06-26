@@ -46,13 +46,13 @@ const Header = () => {
           className="hidden lg:inline"
         />
       </form> */}
-      <Button
+      {/* <Button
         className="w-13 h-9 lg:hidden"
         gradientDuoTone="purpleToBlue"
         outline
       >
         <AiOutlineSearch />
-      </Button>
+      </Button> */}
       <div className="flex gap-2 md:order-2">
         {/* dark mode light mode */}
         <Button
