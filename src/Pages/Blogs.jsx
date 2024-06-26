@@ -7,6 +7,7 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [comments, setComments] = useState({});
   const [likedPost, setLikedPosts] = useState([]);
+  const [expandPost,setExpandPost] = useState({});
 
   useEffect(() => {
     fetchData();
@@ -92,7 +93,13 @@ const Blogs = () => {
       [postId]: value,
     }));
   };
-
+  const toggleExpand = (postId) => {
+    setExpandPost((prevExpandedPosts) => ({
+      ...prevExpandedPosts,
+      [postId]: !prevExpandedPosts[postId],
+    }));
+  };
+  
   return (
     <div className="flex flex-col items-center space-y-8 p-4">
       {blogs.map((ele, index) => (
@@ -118,7 +125,16 @@ const Blogs = () => {
               alt="Post"
               className="w-full h-64 object-cover mb-4 rounded"
             />
-            <p className="text-lg mb-6">{ele.content}</p>
+            <p className="text-lg mb-6">
+              {expandPost[ele.id] ? ele.content :`${ele.content.substring(0,100)}...` }
+                <button 
+                className="text-blue-500 ml-2"
+                onClick={()=>toggleExpand(ele._id)}
+                >
+                  {expandPost[ele.id] ? "Show Less" : "Show More"}
+                </button>
+              </p>
+
             <div className="flex justify-between items-center">
               <Button color="blue" onClick={() => handleLike(ele._id)}>
                 <FaThumbsUp className="inline-block mr-2" />
