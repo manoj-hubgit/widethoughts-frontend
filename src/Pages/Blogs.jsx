@@ -126,7 +126,7 @@ const Blogs = () => {
               className="w-full h-64 object-cover mb-4 rounded"
             />
             <p className="text-lg mb-6">
-              {expandPost[ele._id] ? ele.content :`${ele.content.substring(0,330)}...` }
+              {expandPost[ele._id] ? ele.content :`${ele.content.substring(0,350)}...` }
                 <button 
                 className="text-blue-500 ml-2"
                 onClick={()=>toggleExpand(ele._id)}
