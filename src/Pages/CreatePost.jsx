@@ -129,7 +129,7 @@ const CreatePost = () => {
       } else {
         // If creating a new post
         response = await fetch(
-          "http://localhost:5000/api/post/createpost",
+          "https://widethoughts-backend.onrender.com/api/post/createpost",
           {
             method: "POST",
             headers: {

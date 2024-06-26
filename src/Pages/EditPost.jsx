@@ -38,7 +38,7 @@ const EditPost = () => {
   const fetchPost = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/post/getpost/${postId}`,
+        `https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`,
         {
           headers: {
             Authorization: localStorage.getItem("Token"),
@@ -102,7 +102,7 @@ const EditPost = () => {
     }
     const strippedContent = formData.content.replace(/<[^>]+>/g, "");
     try {
-      const response = await fetch(`http://localhost:5000/api/post/updatepost/${postId}`, {
+      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/updatepost/${postId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
