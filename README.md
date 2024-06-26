@@ -41,4 +41,4 @@ Check out the live application at [WideThoughts](https://widethoughts.netlify.ap
 Contact
 If you have any questions or suggestions, feel free to reach out!
 
-Name: [Manoj A](manojannadurai2265@gmail.com)
+Name: [Manoj A](mailto:manojannadurai2265@gmail.com)
