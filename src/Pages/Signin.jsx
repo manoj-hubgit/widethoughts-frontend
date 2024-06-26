@@ -25,13 +25,10 @@ const Signin = () => {
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    // password: Yup.string()
-    //   .matches(
-    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    //     "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-    //   )
-    //   .min(6, "Password must be at least 6 characters")
-    //   .required("Password is required"),
+      password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+
   });
 
   const handleSubmit = async (values) => {

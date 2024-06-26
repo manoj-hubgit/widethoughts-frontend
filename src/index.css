@@ -1,21 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playwrite+DE+Grund:wght@100..400&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap');
 
 
-.pageName{
-    font-family: "Arvo", serif;
-    font-weight: 800;
+.pageName {
+  font-family: "Arvo", serif;
+  font-weight: 800;
 }
-.caps{
-    font-family: "Pacifico", cursive;
+.caps {
+  font-family: "Pacifico", cursive;
+}
+.titles {
+    font-family: "Ubuntu", sans-serif  ;
+
+}
+.cardStyle{
+    background-color: rgb(230, 230, 230); 
 }
 
+.subText{
+    font-family: "DM Sans", sans-serif;
+}
+.aboutText{
+    font-family: "Playwrite DE Grund", cursive;
+}
+.usename{
+    font-family: "Titillium Web", sans-serif;
+}
 
-.pageNameColor{
-    background: linear-gradient(to left, rgb(92, 93, 234), rgb(38, 148, 220)); /* Purple to Blue */
+.pageNameColor {
+  background: linear-gradient(
+    to left,
+    rgb(92, 93, 234),
+    rgb(38, 148, 220)
+  ); /* Purple to Blue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    
 }
+
+

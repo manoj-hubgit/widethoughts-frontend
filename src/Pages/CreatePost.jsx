@@ -13,7 +13,7 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { HiInformationCircle } from "react-icons/hi";
-
+import "../index.css"
 const CreatePost = () => {
   const [file, setFile] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -35,11 +35,14 @@ const CreatePost = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`, {
-        headers: {
-          Authorization: localStorage.getItem("Token"),
-        },
-      });
+      const response = await fetch(
+        `https://widethoughts-backend.onrender.com/api/post/getpost/${postId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("Token"),
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch post");
       }
@@ -57,11 +60,14 @@ const CreatePost = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch("https://widethoughts-backend.onrender.com/api/post/userposts", {
-        headers: {
-          Authorization: localStorage.getItem("Token"),
-        },
-      });
+      const response = await fetch(
+        "https://widethoughts-backend.onrender.com/api/post/userposts",
+        {
+          headers: {
+            Authorization: localStorage.getItem("Token"),
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
       }
@@ -175,7 +181,9 @@ const CreatePost = () => {
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">{isEditing ? "Edit Post" : "Create Post"}</h1>
+      <h1 className="titles text-center text-3xl my-7 font-semibold">
+        {isEditing ? "Edit Post" : "Create Post"}
+      </h1>
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput

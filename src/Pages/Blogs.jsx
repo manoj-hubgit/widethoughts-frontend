@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "flowbite-react";
 import { FaComment, FaShare, FaThumbsUp } from "react-icons/fa";
-
+import "../index.css"
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [comments, setComments] = useState({});
@@ -104,7 +104,7 @@ const Blogs = () => {
     <div className="flex flex-col items-center space-y-8 p-4">
       {blogs.map((ele, index) => (
         <div key={index} className="w-full max-w-2xl mb-8">
-          <Card>
+          <Card className="cardStyle">
             <div className="flex items-center mb-4">
               {ele.userId && (
                 <img
@@ -115,17 +115,18 @@ const Blogs = () => {
               )}
               <div className="ml-2">
                 {ele.userId && (
-                  <h4 className="text-lg font-semibold">{ele.userId.username}</h4>
+                  <h4 className="usename text-lg font-semibold">{ele.userId.username}</h4>
                 )}
               </div>
             </div>
-            <h3 className="text-center text-3xl font-semibold mb-4">{ele.title}</h3>
+            
+            <h3 className="titles text-center text-3xl font-semibold mb-4">{ele.title}</h3>
             <img
               src={ele.image}
               alt="Post"
               className="w-full h-64 object-cover mb-4 rounded"
             />
-            <p className="text-lg mb-6">
+            <p className="text-lg mb-6 subText">
               {expandPost[ele._id] ? ele.content :`${ele.content.substring(0,350)}...` }
                 <button 
                 className="text-blue-500 ml-2"

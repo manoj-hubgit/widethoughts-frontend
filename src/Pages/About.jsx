@@ -5,12 +5,12 @@ const About = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-4xl font-bold text-center text-gradient">
-        About <div className="pageNameColor"><span className="caps">W</span>
+        <span className="titles">About</span> <div className="pageNameColor"><span className="caps">W</span>
         <span className="pageName">ide</span>
         <span className="caps">T</span>
         <span className="pageName">houghts</span></div>
       </h1>
-      <p className="mt-4 text-lg text-center text-gradient max-w-2xl">
+      <p className="aboutText mt-4 text-lg text-center text-gradient max-w-2xl">
         Welcome to our blog! Here, you can discover a variety of articles,
         tutorials, and stories. Our platform allows you to engage with content
         through features such as commenting, sharing, posting, editing, and
@@ -41,6 +41,7 @@ const About = () => {
           <li>
             <strong>Deleting:</strong> Remove posts that are no longer relevant.
           </li>
+          <br/>
         </ul>
       </div>
     </div>

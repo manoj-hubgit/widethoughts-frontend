@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
 import { FaComment, FaShare, FaThumbsUp } from "react-icons/fa";
-
+import "../index.css"
 const Post = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -100,7 +100,7 @@ const Post = () => {
     post && (
       <div className="flex flex-col items-center space-y-8 p-4">
         <div className="w-full max-w-2xl mb-8">
-          <Card>
+          <Card className="cardStyle">
             <div className="flex items-center mb-4">
               {post.userId && (
                 <img
@@ -111,11 +111,11 @@ const Post = () => {
               )}
               <div className="ml-2">
                 {post.userId && (
-                  <h4 className="text-lg font-semibold">{post.userId.username}</h4>
+                  <h4 className="usename text-lg font-semibold">{post.userId.username}</h4>
                 )}
               </div>
             </div>
-            <h3 className="text-center text-3xl font-semibold mb-4">{post.title}</h3>
+            <h3 className="titles text-center text-3xl font-semibold mb-4">{post.title}</h3>
             <img
               src={post.image}
               alt="Post"

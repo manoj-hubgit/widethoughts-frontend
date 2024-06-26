@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <Navbar className="border-b-2 dark:bg-black">
       <Link
-        to="/"
+        to="/blogs"
         className="pageNameColor self-center bg-gradient-to-r whitespace-nowrap text-lg sm:text-2xl md:text-3xl font-bold dark:text-white"
       >
         <span className="caps">W</span>
@@ -38,21 +38,7 @@ const Header = () => {
         <span className="caps">T</span>
         <span className="pageName">houghts</span> {/* Application Name */}
       </Link>
-      {/* <form action="">
-        <TextInput
-          type="text"
-          placeholder="Search Blogs..." // This is a search box
-          rightIcon={AiOutlineSearch} //used react icons for icon
-          className="hidden lg:inline"
-        />
-      </form> */}
-      {/* <Button
-        className="w-13 h-9 lg:hidden"
-        gradientDuoTone="purpleToBlue"
-        outline
-      >
-        <AiOutlineSearch />
-      </Button> */}
+     
       <div className="flex gap-2 md:order-2">
         {/* dark mode light mode */}
         <Button

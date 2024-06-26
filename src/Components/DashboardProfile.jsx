@@ -13,6 +13,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { HiInformationCircle } from "react-icons/hi";
+import "../index.css"
 import {
   deleteUserFailure,
   deleteUserStart,
@@ -159,7 +160,7 @@ const DashboardProfile = () => {
   };
   return (
     <div className="max-w-lg mx-auto p-4 w-full">
-      <h1 className="my-7 text-center font-semibold text-4xl">Profile</h1>
+      <h1 className="titles my-7 text-center font-semibold text-4xl">Profile</h1>
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <input
           type="file"
