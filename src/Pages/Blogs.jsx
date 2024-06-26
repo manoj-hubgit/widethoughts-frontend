@@ -131,7 +131,7 @@ const Blogs = () => {
                 className="text-blue-500 ml-2"
                 onClick={()=>toggleExpand(ele._id)}
                 >
-                  {expandPost[ele.id] ? "Show Less" : "Show More"}
+                  {expandPost[ele._id] ? "Show Less" : "Show More"}
                 </button>
               </p>
 
